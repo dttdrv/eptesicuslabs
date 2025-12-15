@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --color-eptesicus-black: #000000;
+  --color-eptesicus-white: #F7F7F7;
+  --color-eptesicus-gray: #4B5563;
+  /* Darkened from #B8B8B8 to gray-600 equivalent for readability */
+  --color-eptesicus-blue: #2D6CDF;
+  --color-eptesicus-border: #E5E5E5;
+  --primary: oklch(0.85 0.15 55);
+  /* Requested by user for TextScramble */
+}
+
+@theme inline {
+  --color-background: var(--color-eptesicus-white);
+  --color-foreground: var(--color-eptesicus-black);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-eptesicus-black: var(--color-eptesicus-black);
+  --color-eptesicus-white: var(--color-eptesicus-white);
+  --color-eptesicus-gray: var(--color-eptesicus-gray);
+  --color-eptesicus-blue: var(--color-eptesicus-blue);
+  --color-eptesicus-border: var(--color-eptesicus-border);
+
+  --color-primary: 0.2 0.05 264;
+  /* oklch approximation for #2D6CDF */
+  --color-border: var(--color-eptesicus-border);
+}
+
+/* Dark Mode Removed */
+
+/* Custom Fluidity Utils */
+@utility fluid-container {
+  @apply max-w-7xl mx-auto px-6 sm:px-12 lg:px-24;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  /* ~5% visual pop */
+  box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: black;
+  cursor: pointer;
+}
+
+/* Hide Next.js Dev Indicator */
+nextjs-portal,
+[data-nextjs-toast] {
+  display: none !important;
+}
