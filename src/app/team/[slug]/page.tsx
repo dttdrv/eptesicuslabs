@@ -8,6 +8,12 @@ import { ArrowLeft, Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-re
 import React from 'react';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 
+export async function generateStaticParams() {
+    return Object.keys(TEAM_MEMBERS).map((slug) => ({
+        slug: slug,
+    }));
+}
+
 export default function TeamMemberPage({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = React.use(params);
     const slug = resolvedParams.slug;

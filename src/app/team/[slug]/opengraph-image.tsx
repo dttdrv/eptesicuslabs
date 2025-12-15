@@ -2,6 +2,13 @@ import { ImageResponse } from 'next/og';
 import { TEAM_MEMBERS } from '@/lib/team-data';
 
 export const runtime = 'edge';
+export const dynamic = 'force-static';
+
+export async function generateStaticParams() {
+    return Object.keys(TEAM_MEMBERS).map((slug) => ({
+        slug: slug,
+    }));
+}
 
 export const alt = 'Eptesicus Labs Team Profile';
 export const size = {
