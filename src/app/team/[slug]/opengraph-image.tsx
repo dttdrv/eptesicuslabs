@@ -1,3 +1,4 @@
+import { ImageResponse } from 'next/og';
 import { TEAM_MEMBERS } from '@/lib/team-data';
 
 export const dynamic = 'force-static';
