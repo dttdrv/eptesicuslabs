@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
-output: "export",
+const nextConfig: NextConfig = {
+  output: "export",
   trailingSlash: true,
-    images: {
-  unoptimized: true,
+  images: {
+    unoptimized: true,
   },
 };
 
