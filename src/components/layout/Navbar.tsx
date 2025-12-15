@@ -8,7 +8,7 @@ export default function Navbar() {
     const { t } = useLanguage();
 
     return (
-        <nav className="fixed top-6 left-4 right-4 md:left-8 md:right-8 max-w-7xl mx-auto z-50 bg-white/60 backdrop-blur-[24px] border border-black/5 transition-all shadow-sm">
+        <nav className="fixed top-6 left-4 right-4 md:left-8 md:right-8 max-w-7xl mx-auto z-50 bg-white/50 backdrop-blur-[12px] border border-black/5 transition-all shadow-sm">
             <div className="flex items-center justify-between h-16 px-6">
 
                 {/* Brand */}

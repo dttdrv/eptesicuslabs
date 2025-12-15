@@ -8,9 +8,9 @@ export default function CurrentWork() {
     const { t } = useLanguage();
 
     return (
-        <section id="work" className="py-24 px-6 relative border-t border-[var(--color-eptesicus-border)] text-center transition-colors">
+        <section id="work" className="py-16 px-6 relative border-t border-[var(--color-eptesicus-border)] text-center transition-colors">
             <div className="absolute inset-0 bg-grid-pattern z-0 pointer-events-none" />
-            <div className="fluid-container max-w-5xl mx-auto">
+            <div className="fluid-container max-w-5xl mx-auto relative z-10">
 
                 {/* Active Directives */}
                 <div className="flex flex-col items-center mb-24 space-y-6 max-w-3xl mx-auto">

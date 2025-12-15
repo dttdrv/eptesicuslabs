@@ -9,9 +9,9 @@ export default function About() {
     const { t } = useLanguage();
 
     return (
-        <section id="about" className="py-24 px-6 relative border-b border-[var(--color-eptesicus-border)] transition-colors">
+        <section id="about" className="py-16 px-6 relative border-b border-[var(--color-eptesicus-border)] transition-colors">
             <div className="absolute inset-0 bg-grid-pattern z-0 pointer-events-none" />
-            <div className="fluid-container max-w-5xl mx-auto space-y-24">
+            <div className="fluid-container max-w-5xl mx-auto space-y-24 relative z-10">
 
                 {/* Intro */}
                 <div className="text-center space-y-8 max-w-3xl mx-auto">
