@@ -9,7 +9,7 @@ export const translations = {
         hero: {
             title: "Eptesicus Laboratories",
             subtitle: "On-device AI with predictable unit economics.",
-            body: "We build high-performance small language models and the reliability infrastructure to deploy them on customer-controlled hardware, reducing dependence on per-call cloud APIs.",
+            body: "We build a governance and evaluation runtime that makes on-device AI deployments more auditable and cost-predictable, starting with Lumis-1 as the first packaged product.",
             pills: ["Reduces cloud API spend", "Enterprise licensing", "OEM/ISV partnerships"]
         },
         about: {
@@ -36,11 +36,11 @@ export const translations = {
         },
         work: {
             header: "Active Directives",
-            subheader: "Currently seeking pre-seed funding to expand reliability datasets and evaluation, secure early enterprise pilots motivated to cut API spend, and deepen OEM/ISV partnership pipelines for bundling.",
+            subheader: "Raising €50,000 to build reliability datasets and acceptance tests, harden the runtime and trace artifacts, and deliver a pilot-ready Lumis-1 package.",
             lumis: {
                 name: "Lumis-1",
                 status: "[IN DEVELOPMENT]",
-                desc: "Our first commercial product: an on-device assistant designed to validate the business case for on-device deployment (cost control, privacy, availability) and fund continued model and reliability R&D.",
+                desc: "Our first packaged product: an on-device assistant with a lightweight Validator Council (Safety, Consistency, Accuracy/Support) and a bounded steering loop. Proves the platform thesis and provides a concrete product for early enterprise pilots.",
                 pitchDeck: "Pitch Deck (PDF)",
                 businessPlan: "Business Plan (PDF)",
                 specsLabel: "SYS.SPEC",
@@ -131,67 +131,67 @@ export const translations = {
     },
     bg: {
         nav: {
-            about: "Za Nas",
-            manifesto: "Manifest",
-            work: "Deinost",
-            contact: "Kontakt"
+            about: "За Нас",
+            manifesto: "Манифест",
+            work: "Дейност",
+            contact: "Контакт"
         },
         hero: {
             title: "Eptesicus Laboratories",
-            subtitle: "On-device AI s predvidima ikonomicheska efektivnost.",
-            body: "Nie razrabotvame visokoefektivni malki ezikovi modeli i infrastructura za nadezhdnost, za da gi vnedrim na haruware, kontroliran ot klienta, namalyavaiki zavisimostta ot cloud API.",
-            pills: ["Namalyava razhodite za Cloud API", "Enterprise licenzirane", "OEM/ISV partnyorstva"]
+            subtitle: "On-device AI с предвидима икономическа ефективност.",
+            body: "Изграждаме среда за управление и оценка, която прави внедряването на on-device AI по-проследимо и разходно предсказуемо, като започваме с Lumis-1 като първи пакетиран продукт.",
+            pills: ["Намалява разходите за Cloud API", "Enterprise лицензиране", "OEM/ISV партньорства"]
         },
         about: {
-            label: "ZA NAS",
-            headline: "Nashata cel e da napravim on-device AI standart za realni produkti.",
-            intro1: "Cloud AI e lesen za startirane, no skup i ogranichavasht za mashtabirane. On-device vnedryavaneto dava na ekipite kontrol vurhu razhodite, poveritelnostta i nalichnostta, no raboti samo kogato modelite sa efektivni i nadezhdni.",
-            intro2: "Nie razrabotvame malki ezikovi modeli, optimizirani za visoka proizvoditelnost, i gi suchetavame s inzhenering za nadezhdnost, taka che predpriyatiyata da mogat da vnedryavat on-device intelekt s uverenost.",
-            problemLabel: "Problemut",
-            problemBody: "Cloud-first AI suzdava narastvashti razhodi, zavisimost ot dostavchika i izlagane na danni. Mezhduvremenno mnogo malki modeli vse oshte se borjat s posledovatelnostta i bezopasnite rezhimi na otkaz, koeto blokira serioznoto vnedryavane.",
-            approachLabel: "Nashiyat Podhod",
-            approachTagline: "Nie stroim za dostavka, ne za demo.",
+            label: "ЗА НАС",
+            headline: "Нашата цел е да направим on-device AI стандарт за реални продукти.",
+            intro1: "Cloud AI е лесен за стартиране, но скъп и ограничаващ за мащабиране. On-device внедряването дава на екипите контрол върху разходите, поверителността и наличността, но работи само когато моделите са ефективни и надеждни.",
+            intro2: "Разработваме малки езикови модели, оптимизирани за висока производителност, и ги съчетаваме с инженеринг за надеждност, така че предприятията да могат да внедряват on-device интелект с увереност.",
+            problemLabel: "Проблемът",
+            problemBody: "Cloud-first AI създава нарастващи разходи, зависимост от доставчика и излагане на данни. Междувременно много малки модели все още се борят с последователността и безопасните режими на отказ, което блокира сериозното внедряване.",
+            approachLabel: "Нашият Подход",
+            approachTagline: "Строим за доставка, не за демо.",
             grid: [
-                { title: "Model R&D", desc: "podobryavane na sposobnostta na malki ezikovi modeli (izmereno spryamo publichni bazovi linii i vutreshni evals)." },
-                { title: "Infrastructura za nadezhdnost", desc: "nabori ot danni + instrumenti za ocenka, koito uchyat regresii i kolichestveno opredelyat podobreniyata." },
-                { title: "Putishta za vnedryavane", desc: "paketirane, kontrol i integracionni modeli, koito rabotyat za enterprise i OEM/ISV razprostranenie." }
+                { title: "Model R&D", desc: "подобряване на способността на малки езикови модели (измерено спрямо публични базови линии и вътрешни evals)." },
+                { title: "Инфраструктура за надеждност", desc: "набори от данни + инструменти за оценка, които улавят регресии и количествено определят подобренията." },
+                { title: "Пътища за внедряване", desc: "пакетиране, контроли и интеграционни модели, които работят за enterprise и OEM/ISV разпространение." }
             ],
-            visionLabel: "Viziya",
-            visionBody: "Svyat, v koito AI raboti predimno na hardware, kontroliran ot klienta, s malki modeli, koito sa kakto sposobni, taka i nadezhdni. Eptesicus Laboratories shte izgradi portfolio ot on-device modeli i instrumenti za nadezhdnost.",
-            leadershipQuote: "“Nie izgrazhdame osnovata za turgovsko mashtabirane na on-device AI: efektivni malki modeli, izmerima nadezhdnost i razprostranenie chrez enterprise licenzirane.”",
+            visionLabel: "Визия",
+            visionBody: "Свят, в който AI работи предимно на хардуер, контролиран от клиента, с малки модели, които са както способни, така и надеждни. Eptesicus Laboratories ще изгради портфолио от on-device модели и инструменти за надеждност.",
+            leadershipQuote: "„Изграждаме основата за търговско мащабиране на on-device AI: ефективни малки модели, измерима надеждност и разпространение чрез enterprise лицензиране.“",
             roles: {
-                deyan: "Osnovatel & Operator",
-                iliyan: "Suosnovatel & CTO"
+                deyan: "Основател & Оператор",
+                iliyan: "Съосновател & CTO"
             }
         },
         work: {
-            header: "Aktivni Direktivi",
-            subheader: "V momenta tursim pre-seed finansirane za razshiryavane na naborite ot danni za nadezhdnost i ocenka, osiguryavane na ranni enterprise piloti i zadulbochavane na OEM/ISV partnyorstva.",
+            header: "Активни Директиви",
+            subheader: "Набираме €50,000 за изграждане на datasets за надеждност и приемни тестове, укрепване на средата за изпълнение и доставка на Lumis-1 готова за пилот.",
             lumis: {
                 name: "Lumis-1",
-                status: "[V RAZRABOTKA]",
-                desc: "Nashiyat purvi turgovski produkt: on-device asistent, proektiran da validira biznes modela za on-device vnedryavane (kontrol na razhodite, poveritelnost, nalichnost).",
+                status: "[В РАЗРАБОТКА]",
+                desc: "Нашият първи пакетиран продукт: on-device асистент с олекотен Validator Council (Safety, Consistency, Accuracy/Support) и ограничен steering loop.",
                 pitchDeck: "Pitch Deck (PDF)",
-                businessPlan: "Biznes Plan (PDF)",
+                businessPlan: "Бизнес План (PDF)",
                 specsLabel: "SYS.SPEC",
                 specs: [
                     "On-device",
-                    "Offline-capable",
-                    "Reliability layer"
+                    "Офлайн",
+                    "Слой за надеждност"
                 ]
             }
         },
         team: {
-            back: "Nazad kum ekipa",
-            narrative: "Operativen Narativ",
-            stack: "Tehnicheski Stack"
+            back: "Назад към екипа",
+            narrative: "Оперативен Наратив",
+            stack: "Технически Stack"
         },
         footer: {
-            legal: "Eptesicus Laboratories e marka, upravlyavana ot Deyan Todorov i Iliyan Bozhanov. Eptesicus Laboratories ne e registrirano yuridichesko lice. Vsichki dogovori se sklyuchvat ot Deyan Todorov i Iliyan Bozhanov.",
-            rights: "Vsichki prava zapazeni.",
+            legal: "Eptesicus Laboratories е марка, управлявана от Деян Тодоров и Илиян Божанов. Eptesicus Laboratories не е регистрирано юридическо лице. Всички договори се сключват от Деян Тодоров и Илиян Божанов.",
+            rights: "Всички права запазени.",
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
-            contact: "Kontakt"
+            contact: "Контакт"
         }
     },
     fr: {
