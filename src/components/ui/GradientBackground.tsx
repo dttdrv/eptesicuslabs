@@ -7,20 +7,29 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
 export default function GradientBackground() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [time, setTime] = useState(0);
-    const [bloomPhase, setBloomPhase] = useState(0); // 0 = closed, 1 = fully bloomed
+    const [bloomPhase, setBloomPhase] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
     const animationRef = useRef<number | undefined>(undefined);
     const startTimeRef = useRef<number>(0);
 
-    // Bloom animation on mount - flower opens
+    // Detect mobile on mount
+    useIsomorphicLayoutEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile, { passive: true });
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Bloom animation on mount
     useIsomorphicLayoutEffect(() => {
         startTimeRef.current = performance.now();
 
         const animateBloom = () => {
             const elapsed = performance.now() - startTimeRef.current;
-            const bloomDuration = 2400; // 2.4s bloom duration
+            const bloomDuration = isMobile ? 1800 : 2400; // Faster on mobile
             const progress = Math.min(elapsed / bloomDuration, 1);
-
-            // Smooth easing for bloom: easeOutExpo
             const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
             setBloomPhase(eased);
 
@@ -30,7 +39,7 @@ export default function GradientBackground() {
         };
 
         requestAnimationFrame(animateBloom);
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,54 +54,90 @@ export default function GradientBackground() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Continuous gentle floating animation
+    // Continuous animation - ONLY on desktop, static on mobile for performance
     useEffect(() => {
+        if (isMobile) return; // Skip JS animation on mobile
+
         const animate = () => {
-            setTime(prev => prev + 0.002); // Slower for tranquility
+            setTime(prev => prev + 0.002);
             animationRef.current = requestAnimationFrame(animate);
         };
         animationRef.current = requestAnimationFrame(animate);
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, []);
+    }, [isMobile]);
 
     const t = scrollProgress;
-    const b = bloomPhase; // bloom factor 0-1
+    const b = bloomPhase;
 
-    // Flower blossom effect:
-    // - Start at center (50%, 70%) when closed
-    // - Petals spread outward as flower blooms
-    // - After bloom, gentle floating + scroll reactivity
+    // Mobile: Use CSS animations, simpler layout, reduced blur
+    if (isMobile) {
+        return (
+            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                {/* Clean white base */}
+                <div className="absolute inset-0 bg-white" />
 
-    // Petal 1 (top-right) - blooms upward and right
+                {/* Single optimized gradient blob with CSS animation */}
+                <div
+                    className="absolute rounded-full animate-gradient-float"
+                    style={{
+                        width: '300px',
+                        height: '300px',
+                        background: 'radial-gradient(circle, #3B82F6 0%, #60A5FA 40%, transparent 70%)',
+                        left: '50%',
+                        top: `${60 - t * 20}%`,
+                        transform: `translate(-50%, -50%) scale(${0.6 + b * 0.4})`,
+                        filter: 'blur(30px)', // Reduced blur for mobile
+                        opacity: 0.25 + b * 0.1,
+                        willChange: 'transform, opacity',
+                        contain: 'layout paint',
+                    }}
+                />
+
+                {/* Secondary subtle gradient */}
+                <div
+                    className="absolute rounded-full animate-gradient-float-delayed"
+                    style={{
+                        width: '250px',
+                        height: '250px',
+                        background: 'radial-gradient(circle, #60A5FA 0%, #93C5FD 50%, transparent 70%)',
+                        left: '30%',
+                        top: `${45 - t * 15}%`,
+                        transform: `translate(-50%, -50%) scale(${0.5 + b * 0.5})`,
+                        filter: 'blur(25px)',
+                        opacity: 0.18 + b * 0.08,
+                        willChange: 'transform, opacity',
+                        contain: 'layout paint',
+                    }}
+                />
+            </div>
+        );
+    }
+
+    // Desktop: Full animation
     const petal1X = 50 + b * (20 + Math.sin(time * 0.6) * 6) - t * 15;
     const petal1Y = 70 - b * (25 + Math.cos(time * 0.5) * 4) - t * 20;
     const petal1Scale = 0.3 + b * 0.7;
 
-    // Petal 2 (top-left) - blooms upward and left
     const petal2X = 50 - b * (22 + Math.cos(time * 0.7 + 1) * 5) + t * 10;
     const petal2Y = 70 - b * (28 + Math.sin(time * 0.55 + 2) * 5) - t * 25;
     const petal2Scale = 0.25 + b * 0.75;
 
-    // Petal 3 (bottom-right) - blooms downward and right
     const petal3X = 50 + b * (25 + Math.sin(time * 0.8 + 2) * 7);
     const petal3Y = 70 + b * (15 + Math.cos(time * 0.65) * 4) - t * 10;
     const petal3Scale = 0.2 + b * 0.8;
 
-    // Petal 4 (bottom-left) - blooms downward and left
     const petal4X = 50 - b * (18 + Math.cos(time * 0.75 + 3) * 6);
     const petal4Y = 70 + b * (20 + Math.sin(time * 0.6 + 1) * 5) - t * 8;
     const petal4Scale = 0.35 + b * 0.65;
 
-    // Center stamen - stays mostly centered, pulses gently
     const centerX = 50 + Math.sin(time * 0.4) * 3;
     const centerY = 70 - t * 15 + Math.cos(time * 0.35) * 2;
     const centerScale = 0.5 + b * 0.3 + Math.sin(time * 0.8) * 0.05;
 
     return (
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-            {/* Clean white base */}
             <div className="absolute inset-0 bg-white" />
 
             {/* Petal 1 - Primary blue */}
@@ -155,7 +200,7 @@ export default function GradientBackground() {
                 }}
             />
 
-            {/* Center stamen - warm accent */}
+            {/* Center stamen */}
             <div
                 className="absolute rounded-full will-change-transform"
                 style={{

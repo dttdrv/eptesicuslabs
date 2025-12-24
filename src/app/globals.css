@@ -59,6 +59,11 @@
     /* Hide scrollbar completely */
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /* Edge-to-edge support */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   /* Hide Webkit scrollbar (Chrome, Safari, Edge) */
@@ -256,6 +261,81 @@
 .focus-ring:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent-blue);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE GRADIENT ANIMATIONS
+   GPU-optimized CSS animations for mobile performance
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes gradient-float {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.05);
+  }
+}
+
+@keyframes gradient-float-delayed {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-48%, -50%) scale(1.03);
+  }
+}
+
+.animate-gradient-float {
+  animation: gradient-float 8s ease-in-out infinite;
+}
+
+.animate-gradient-float-delayed {
+  animation: gradient-float-delayed 10s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE MENU ANIMATIONS
+   Polished entrance/exit animations
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes menu-backdrop-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(24px);
+  }
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll lock for mobile menu */
+.scroll-locked {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 767px) {
+  .mobile-tap-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
 }
 
 /* Reduced motion support */
