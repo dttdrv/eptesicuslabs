@@ -7,8 +7,8 @@ import { useLanguage } from '@/components/providers/LanguageProvider';
 export default function CurrentWork() {
     const { t } = useLanguage();
 
-    // Use technology translations if available, fallback to work
-    const tech = t.technology || t.work;
+    // Use technology translations
+    const tech = t.technology;
 
     return (
         <section id="technology" className="py-24 px-6 relative border-b border-[var(--border-default)] text-center">

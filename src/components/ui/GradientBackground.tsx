@@ -8,7 +8,7 @@ export default function GradientBackground() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [time, setTime] = useState(0);
     const [bloomPhase, setBloomPhase] = useState(0); // 0 = closed, 1 = fully bloomed
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | undefined>(undefined);
     const startTimeRef = useRef<number>(0);
 
     // Bloom animation on mount - flower opens
