@@ -87,11 +87,28 @@ export const translations = {
             }
         },
         team: {
+            label: "Our Team",
+            headline: "Leadership",
             back: "Back to Team",
             narrative: "Operational Narrative",
             stack: "Technical Capability Stack"
         },
+        products: {
+            label: "Products",
+            description: "An on-device AI assistant with a lightweight Validator Council and bounded steering loop.",
+            status: "In Development",
+            overviewText: "Our first packaged product: an on-device assistant with a lightweight Validator Council (Safety, Consistency, Accuracy/Support) and a bounded steering loop. Proves the platform thesis and provides a concrete product for early enterprise pilots.",
+            specsTitle: "Technical Specifications",
+            specs: ["On-device processing", "Offline-capable", "Reliability layer built-in", "Enterprise-ready"],
+            tabs: {
+                overview: "Overview",
+                reliability: "Reliability Layer",
+                economics: "Economics",
+                useCases: "Use Cases"
+            }
+        },
         footer: {
+            pitchDeck: "Pitch Deck",
             legal: "Eptesicus Laboratories is a brand operated by Deyan Todorov and Iliyan Bozhanov. Incorporation pending. All agreements are currently entered into by the founders directly.",
             rights: "All rights reserved.",
             x_twitter: "X (Twitter)",
@@ -155,11 +172,28 @@ export const translations = {
             }
         },
         team: {
+            label: "Unser Team",
+            headline: "Führung",
             back: "Zurück zum Team",
             narrative: "Operatives Narrativ",
             stack: "Technischer Fähigkeits-Stack"
         },
+        products: {
+            label: "Produkte",
+            description: "Ein lokaler KI-Assistent mit leichtgewichtigem Validator Council und begrenztem Steering Loop.",
+            status: "In Entwicklung",
+            overviewText: "Unser erstes Paketprodukt: ein lokaler Assistent mit leichtgewichtigem Validator Council (Safety, Consistency, Accuracy/Support) und begrenztem Steering Loop.",
+            specsTitle: "Technische Spezifikationen",
+            specs: ["Lokale Verarbeitung", "Offline-fähig", "Eingebaute Zuverlässigkeitsschicht", "Enterprise-ready"],
+            tabs: {
+                overview: "Übersicht",
+                reliability: "Zuverlässigkeitsschicht",
+                economics: "Wirtschaft",
+                useCases: "Anwendungsfälle"
+            }
+        },
         footer: {
+            pitchDeck: "Pitch Deck",
             legal: "Eptesicus Laboratories ist eine Marke von Deyan Todorov und Iliyan Bozhanov. Eptesicus Laboratories ist keine eingetragene juristische Person. Alle Verträge werden von Deyan Todorov und Iliyan Bozhanov geschlossen.",
             rights: "Alle Rechte vorbehalten.",
             x_twitter: "X (Twitter)",
@@ -223,11 +257,28 @@ export const translations = {
             }
         },
         team: {
+            label: "Нашият Екип",
+            headline: "Ръководство",
             back: "Назад към екипа",
             narrative: "Оперативен Наратив",
             stack: "Технически Stack"
         },
+        products: {
+            label: "Продукти",
+            description: "On-device AI асистент с олекотен Validator Council и ограничен steering loop.",
+            status: "В разработка",
+            overviewText: "Нашият първи пакетиран продукт: on-device асистент с олекотен Validator Council (Safety, Consistency, Accuracy/Support) и ограничен steering loop.",
+            specsTitle: "Технически Спецификации",
+            specs: ["On-device обработка", "Офлайн режим", "Вграден слой за надеждност", "Enterprise-ready"],
+            tabs: {
+                overview: "Преглед",
+                reliability: "Слой за надеждност",
+                economics: "Икономика",
+                useCases: "Приложения"
+            }
+        },
         footer: {
+            pitchDeck: "Pitch Deck",
             legal: "Eptesicus Laboratories е марка, управлявана от Деян Тодоров и Илиян Божанов. Eptesicus Laboratories не е регистрирано юридическо лице. Всички договори се сключват от Деян Тодоров и Илиян Божанов.",
             rights: "Всички права запазени.",
             x_twitter: "X (Twitter)",
@@ -291,11 +342,28 @@ export const translations = {
             }
         },
         team: {
+            label: "Η Ομάδα μας",
+            headline: "Ηγεσία",
             back: "Πίσω στην ομάδα",
             narrative: "Λειτουργική Αφήγηση",
             stack: "Τεχνικό Stack"
         },
+        products: {
+            label: "Προϊόντα",
+            description: "On-device AI βοηθός με ελαφρύ Validator Council και περιορισμένο steering loop.",
+            status: "Σε ανάπτυξη",
+            overviewText: "Το πρώτο μας πακεταρισμένο προϊόν: on-device βοηθός με ελαφρύ Validator Council (Safety, Consistency, Accuracy/Support) και περιορισμένο steering loop.",
+            specsTitle: "Τεχνικές Προδιαγραφές",
+            specs: ["On-device επεξεργασία", "Offline λειτουργία", "Ενσωματωμένο επίπεδο αξιοπιστίας", "Enterprise-ready"],
+            tabs: {
+                overview: "Επισκόπηση",
+                reliability: "Επίπεδο Αξιοπιστίας",
+                economics: "Οικονομικά",
+                useCases: "Περιπτώσεις Χρήσης"
+            }
+        },
         footer: {
+            pitchDeck: "Pitch Deck",
             legal: "Η Eptesicus Laboratories είναι εμπορική επωνυμία που λειτουργεί από τους Deyan Todorov και Iliyan Bozhanov. Η Eptesicus Laboratories δεν είναι εγγεγραμμένη νομική οντότητα. Όλες οι συμβάσεις συνάπτονται από τους Deyan Todorov και Iliyan Bozhanov.",
             rights: "Με επιφύλαξη παντός δικαιώματος.",
             x_twitter: "X (Twitter)",
@@ -359,11 +427,28 @@ export const translations = {
             }
         },
         team: {
+            label: "Il Nostro Team",
+            headline: "Leadership",
             back: "Torna al Team",
             narrative: "Narrativa Operativa",
             stack: "Stack di Capacità Tecniche"
         },
+        products: {
+            label: "Prodotti",
+            description: "Un assistente IA on-device con Validator Council leggero e steering loop limitato.",
+            status: "In Sviluppo",
+            overviewText: "Il nostro primo prodotto pacchettizzato: un assistente on-device con Validator Council leggero (Safety, Consistency, Accuracy/Support) e steering loop limitato.",
+            specsTitle: "Specifiche Tecniche",
+            specs: ["Elaborazione on-device", "Funzionalità offline", "Livello di affidabilità integrato", "Enterprise-ready"],
+            tabs: {
+                overview: "Panoramica",
+                reliability: "Livello di Affidabilità",
+                economics: "Economia",
+                useCases: "Casi d'Uso"
+            }
+        },
         footer: {
+            pitchDeck: "Pitch Deck",
             legal: "Eptesicus Laboratories è un marchio operato da Deyan Todorov e Iliyan Bozhanov. Eptesicus Laboratories non è un'entità legale registrata. Tutti i contratti sono stipulati da Deyan Todorov e Iliyan Bozhanov.",
             rights: "Tutti i diritti riservati.",
             x_twitter: "X (Twitter)",
