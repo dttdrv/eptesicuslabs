@@ -2,6 +2,8 @@ export const translations = {
     en: {
         nav: {
             about: "About",
+            products: "Products",
+            team: "Team",
             manifesto: "Manifesto",
             work: "Work",
             contact: "Contact"
@@ -100,6 +102,8 @@ export const translations = {
     de: {
         nav: {
             about: "Über Uns",
+            products: "Produkte",
+            team: "Team",
             manifesto: "Manifest",
             work: "Arbeit",
             contact: "Kontakt"
@@ -166,6 +170,8 @@ export const translations = {
     bg: {
         nav: {
             about: "За Нас",
+            products: "Продукти",
+            team: "Екип",
             manifesto: "Манифест",
             work: "Дейност",
             contact: "Контакт"
@@ -232,6 +238,8 @@ export const translations = {
     el: {
         nav: {
             about: "Σχετικά",
+            products: "Προϊόντα",
+            team: "Ομάδα",
             manifesto: "Μανιφέστο",
             work: "Έργα",
             contact: "Επικοινωνία"
@@ -298,6 +306,8 @@ export const translations = {
     it: {
         nav: {
             about: "Chi Siamo",
+            products: "Prodotti",
+            team: "Team",
             manifesto: "Manifesto",
             work: "Lavori",
             contact: "Contatti"
