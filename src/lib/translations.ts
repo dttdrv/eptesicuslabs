@@ -8,9 +8,13 @@ export const translations = {
         },
         hero: {
             title: "Eptesicus Laboratories",
-            subtitle: "On-device AI with predictable unit economics.",
+            subtitle: "Advancing On-device intelligence",
             body: "We build a governance and evaluation runtime that makes on-device AI deployments more auditable and cost-predictable, starting with Lumis-1 as the first packaged product.",
-            pills: ["Reduces cloud API spend", "Enterprise licensing", "OEM/ISV partnerships"]
+            pills: ["Reduces cloud API spend", "Enterprise licensing", "OEM/ISV partnerships"],
+            cta: {
+                primary: "Request Pitch Deck",
+                secondary: "Join Pilot Program"
+            }
         },
         about: {
             label: "ABOUT",
@@ -19,6 +23,7 @@ export const translations = {
             intro2: "We develop small language models optimized for strong performance per compute and pair them with reliability engineering so enterprises can ship on-device intelligence with confidence.",
             problemLabel: "The Problem",
             problemBody: "Cloud-first AI creates compounding costs, vendor lock-in, and data exposure. Meanwhile, many small models still struggle with consistency and safe failure modes, which blocks serious deployment.",
+            solutionLabel: "Our Solution",
             approachLabel: "Our Approach",
             approachTagline: "We build for shipping, not demos.",
             grid: [
@@ -34,15 +39,43 @@ export const translations = {
                 iliyan: "Co-Founder & CTO"
             }
         },
-        work: {
-            header: "Active Directives",
+        validator: {
+            label: "THE RELIABILITY LAYER",
+            headline: "Deterministic control over probabilistic output.",
+            description: "Our runtime wraps the core model with a deterministic Validator Council. Every output is checked against safety, factual, and structural policies before it reaches the user.",
+            steps: [
+                { id: "draft", title: "Draft", desc: "The core model generates a candidate response based on the input context." },
+                { id: "validate", title: "Validate", desc: "The Validator Council executes parallel checks for safety, schema compliance, and logic." },
+                { id: "correct", title: "Correct", desc: "If a check fails, the steering loop triggers a regeneration with specific constraints." },
+                { id: "output", title: "Output", desc: "Only verified, compliant content is released to the downstream application." }
+            ]
+        },
+        useCases: {
+            label: "USE CASES",
+            headline: "High-value deployment environments.",
+            cases: [
+                { icon: "legal", title: "LegalTech", desc: "Automated contract review within strict data residency boundaries. No client data ever leaves the secure enclave." },
+                { icon: "health", title: "Healthcare", desc: "Clinical note structuring and patient data processing on hospital hardware, ensuring HIPAA compliance and zero latency." },
+                { icon: "industrial", title: "Industrial", desc: "Offline maintenance assistants for field technicians. Technical manuals and diagnostic AI available without internet connectivity." }
+            ]
+        },
+        economics: {
+            label: "THE ECONOMICS",
+            headline: "Predictable costs at any scale.",
+            cloudTitle: "Cloud AI",
+            cloudDesc: "Costs scale linearly with usage. High per-token fees, unpredictable monthly bills, and data transfer charges punish growth.",
+            onDeviceTitle: "On-Device",
+            onDeviceDesc: "Leverage existing hardware with zero marginal cost per token. Flat licensing puts you in control of your margins."
+        },
+        technology: {
+            header: "Technology",
             subheader: "Raising €50,000 to build reliability datasets and acceptance tests, harden the runtime and trace artifacts, and deliver a pilot-ready Lumis-1 package.",
             lumis: {
                 name: "Lumis-1",
                 status: "[IN DEVELOPMENT]",
                 desc: "Our first packaged product: an on-device assistant with a lightweight Validator Council (Safety, Consistency, Accuracy/Support) and a bounded steering loop. Proves the platform thesis and provides a concrete product for early enterprise pilots.",
-                pitchDeck: "Pitch Deck (PDF)",
-                businessPlan: "Business Plan (PDF)",
+                pitchDeck: "Request Pitch Deck",
+                businessPlan: "View Business Plan",
                 specsLabel: "SYS.SPEC",
                 specs: [
                     "On-device",
@@ -57,7 +90,7 @@ export const translations = {
             stack: "Technical Capability Stack"
         },
         footer: {
-            legal: "Eptesicus Laboratories is a brand operated by Deyan Todorov and Iliyan Bozhanov. Eptesicus Laboratories is not a registered legal entity. All agreements are entered into by Deyan Todorov and Iliyan Bozhanov.",
+            legal: "Eptesicus Laboratories is a brand operated by Deyan Todorov and Iliyan Bozhanov. Incorporation pending. All agreements are currently entered into by the founders directly.",
             rights: "All rights reserved.",
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
@@ -84,6 +117,7 @@ export const translations = {
             intro2: "Wir entwickeln kleine Sprachmodelle, die für starke Leistung pro Recheneinheit optimiert sind, und kombinieren sie mit Zuverlässigkeits-Engineering, damit Unternehmen lokale Intelligenz mit Vertrauen ausliefern können.",
             problemLabel: "Das Problem",
             problemBody: "Cloud-First-KI verursacht steigende Kosten, Herstellerbindung und Datenexponierung. Viele kleine Modelle kämpfen noch mit Konsistenz und sicheren Fehlermodi, was ernsthafte Einsätze blockiert.",
+            solutionLabel: "Unsere Lösung",
             approachLabel: "Unser Ansatz",
             approachTagline: "Wir bauen für den Einsatz, nicht für Demos.",
             grid: [
@@ -149,6 +183,7 @@ export const translations = {
             intro2: "Разработваме малки езикови модели, оптимизирани за висока производителност, и ги съчетаваме с инженеринг за надеждност, така че предприятията да могат да внедряват on-device интелект с увереност.",
             problemLabel: "Проблемът",
             problemBody: "Cloud-first AI създава нарастващи разходи, зависимост от доставчика и излагане на данни. Междувременно много малки модели все още се борят с последователността и безопасните режими на отказ, което блокира сериозното внедряване.",
+            solutionLabel: "Нашето Решение",
             approachLabel: "Нашият Подход",
             approachTagline: "Строим за доставка, не за демо.",
             grid: [
@@ -194,69 +229,70 @@ export const translations = {
             contact: "Контакт"
         }
     },
-    fr: {
+    el: {
         nav: {
-            about: "À Propos",
-            manifesto: "Manifeste",
-            work: "Travaux",
-            contact: "Contact"
+            about: "Σχετικά",
+            manifesto: "Μανιφέστο",
+            work: "Έργα",
+            contact: "Επικοινωνία"
         },
         hero: {
             title: "Eptesicus Laboratories",
-            subtitle: "IA locale avec une économie unitaire prévisible.",
-            body: "Nous construisons des petits modèles de langage performants et l'infrastructure de fiabilité pour les déployer sur du matériel contrôlé par le client, réduisant la dépendance aux API cloud.",
-            pills: ["Réduit les coûts API Cloud", "Licences Entreprise", "Partenariats OEM/ISV"]
+            subtitle: "On-device AI με προβλέψιμη οικονομία μονάδας.",
+            body: "Κατασκευάζουμε περιβάλλον διακυβέρνησης και αξιολόγησης που καθιστά τις εγκαταστάσεις on-device AI πιο ελέγξιμες και οικονομικά προβλέψιμες, ξεκινώντας με το Lumis-1 ως το πρώτο πακεταρισμένο προϊόν.",
+            pills: ["Μειώνει το κόστος Cloud API", "Enterprise αδειοδότηση", "OEM/ISV συνεργασίες"]
         },
         about: {
-            label: "À PROPOS",
-            headline: "Notre objectif est de faire de l'IA locale la norme pour les produits réels.",
-            intro1: "L'IA Cloud est facile pour commencer, mais coûteuse et restrictive à l'échelle. Le déploiement local donne aux équipes le contrôle sur les coûts, la confidentialité et la disponibilité, mais ne fonctionne que si les modèles sont efficaces et fiables.",
-            intro2: "Nous développons de petits modèles optimisés pour la performance et les associons à une ingénierie de fiabilité pour que les entreprises puissent déployer l'intelligence locale en toute confiance.",
-            problemLabel: "Le Problème",
-            problemBody: "L'IA Cloud-first crée des coûts croissants, un verrouillage fournisseur et une exposition des données. De nombreux petits modèles luttent encore avec la cohérence, bloquant le déploiement sérieux.",
-            approachLabel: "Notre Approche",
-            approachTagline: "Nous construisons pour livrer, pas pour des démos.",
+            label: "ΣΧΕΤΙΚΑ",
+            headline: "Στόχος μας είναι να κάνουμε το on-device AI το πρότυπο για πραγματικά προϊόντα.",
+            intro1: "Το Cloud AI είναι εύκολο για να ξεκινήσεις, αλλά ακριβό και περιοριστικό στην κλιμάκωση. Η on-device εγκατάσταση δίνει στις ομάδες έλεγχο στο κόστος, την ιδιωτικότητα και τη διαθεσιμότητα, αλλά λειτουργεί μόνο όταν τα μοντέλα είναι αποδοτικά και αξιόπιστα.",
+            intro2: "Αναπτύσσουμε μικρά γλωσσικά μοντέλα βελτιστοποιημένα για υψηλή απόδοση και τα συνδυάζουμε με μηχανική αξιοπιστίας ώστε οι επιχειρήσεις να μπορούν να εγκαταστήσουν on-device νοημοσύνη με εμπιστοσύνη.",
+            problemLabel: "Το Πρόβλημα",
+            problemBody: "Το Cloud-first AI δημιουργεί αυξανόμενα κόστη, εξάρτηση από προμηθευτή και έκθεση δεδομένων. Πολλά μικρά μοντέλα εξακολουθούν να δυσκολεύονται με τη συνέπεια και τις ασφαλείς λειτουργίες αποτυχίας, που μπλοκάρουν τη σοβαρή εγκατάσταση.",
+            solutionLabel: "Η Λύση μας",
+            approachLabel: "Η Προσέγγισή μας",
+            approachTagline: "Χτίζουμε για παράδοση, όχι για demos.",
             grid: [
-                { title: "R&D Modèles", desc: "améliorer la capacité par calcul dans les petits modèles de langage (mesurée par rapport aux références publiques)." },
-                { title: "Infrastructure de fiabilité", desc: "jeux de données + outils d'évaluation qui détectent les régressions et quantifient les améliorations." },
-                { title: "Voies de déploiement", desc: "emballage, contrôles et modèles d'intégration pour la distribution Enterprise et OEM/ISV." }
+                { title: "Model R&D", desc: "βελτίωση της ικανότητας ανά υπολογισμό σε μικρά γλωσσικά μοντέλα (μετρημένη έναντι δημόσιων baselines και εσωτερικών evals)." },
+                { title: "Υποδομή αξιοπιστίας", desc: "datasets + εργαλεία αξιολόγησης που εντοπίζουν παλινδρομήσεις και ποσοτικοποιούν βελτιώσεις." },
+                { title: "Διαδρομές εγκατάστασης", desc: "πακετάρισμα, έλεγχοι και μοτίβα ενσωμάτωσης που λειτουργούν για enterprise και OEM/ISV διανομή." }
             ],
-            visionLabel: "Vision",
-            visionBody: "Un monde où l'IA fonctionne principalement sur du matériel contrôlé par le client. Eptesicus Laboratories construira un portefeuille de modèles locaux et d'outils de fiabilité.",
-            leadershipQuote: "“Nous construisons les fondations pour que l'IA locale passe à l'échelle commerciale : modèles efficaces, fiabilité mesurable et distribution via licences.”",
+            visionLabel: "Όραμα",
+            visionBody: "Ένας κόσμος όπου η AI τρέχει κυρίως σε hardware ελεγχόμενο από τον πελάτη, με μικρά μοντέλα που είναι τόσο ικανά όσο και αξιόπιστα. Η Eptesicus Laboratories θα χτίσει ένα χαρτοφυλάκιο on-device μοντέλων και εργαλείων αξιοπιστίας.",
+            leadershipQuote: "«Χτίζουμε τα θεμέλια για την εμπορική κλιμάκωση του on-device AI: αποδοτικά μικρά μοντέλα, μετρήσιμη αξιοπιστία και διανομή μέσω enterprise αδειοδότησης.»",
             roles: {
-                deyan: "Fondateur & Opérateur",
-                iliyan: "Co-Fondateur & CTO"
+                deyan: "Ιδρυτής & Διαχειριστής",
+                iliyan: "Συνιδρυτής & CTO"
             }
         },
         work: {
-            header: "Directives Actives",
-            subheader: "Recherche de financement pré-amorçage pour étendre les jeux de données de fiabilité, sécuriser les pilotes d'entreprise et approfondir les partenariats OEM/ISV.",
+            header: "Ενεργές Οδηγίες",
+            subheader: "Συγκεντρώνουμε €50.000 για δημιουργία datasets αξιοπιστίας και δοκιμών αποδοχής, ενίσχυση του runtime και παράδοση Lumis-1 έτοιμου για pilot.",
             lumis: {
                 name: "Lumis-1",
-                status: "[EN DÉVELOPPEMENT]",
-                desc: "Notre premier produit commercial : un assistant local conçu pour valider le business case du déploiement local (coûts, confidentialité, disponibilité).",
+                status: "[ΣΕ ΑΝΑΠΤΥΞΗ]",
+                desc: "Το πρώτο μας πακεταρισμένο προϊόν: on-device βοηθός με ελαφρύ Validator Council (Safety, Consistency, Accuracy/Support) και περιορισμένο steering loop.",
                 pitchDeck: "Pitch Deck (PDF)",
-                businessPlan: "Business Plan (PDF)",
+                businessPlan: "Επιχειρηματικό Πλάνο (PDF)",
                 specsLabel: "SYS.SPEC",
                 specs: [
-                    "Sur appareil (On-device)",
-                    "Fonctionne hors ligne",
-                    "Couche de fiabilité"
+                    "On-device",
+                    "Offline",
+                    "Επίπεδο αξιοπιστίας"
                 ]
             }
         },
         team: {
-            back: "Retour à l'équipe",
-            narrative: "Récit Opérationnel",
-            stack: "Pile de Capacités Techniques"
+            back: "Πίσω στην ομάδα",
+            narrative: "Λειτουργική Αφήγηση",
+            stack: "Τεχνικό Stack"
         },
         footer: {
-            legal: "Eptesicus Laboratories est une marque opérée par Deyan Todorov et Iliyan Bozhanov. Eptesicus Laboratories n'est pas une entité légale enregistrée. Tous les contrats sont conclus par Deyan Todorov et Iliyan Bozhanov.",
-            rights: "Tous droits réservés.",
+            legal: "Η Eptesicus Laboratories είναι εμπορική επωνυμία που λειτουργεί από τους Deyan Todorov και Iliyan Bozhanov. Η Eptesicus Laboratories δεν είναι εγγεγραμμένη νομική οντότητα. Όλες οι συμβάσεις συνάπτονται από τους Deyan Todorov και Iliyan Bozhanov.",
+            rights: "Με επιφύλαξη παντός δικαιώματος.",
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
-            contact: "Contact"
+            contact: "Επικοινωνία"
         }
     },
     it: {
@@ -279,6 +315,7 @@ export const translations = {
             intro2: "Sviluppiamo piccoli modelli ottimizzati per performance e li abbiniamo a ingegneria dell'affidabilità affinché le aziende possano distribuire intelligenza locale con fiducia.",
             problemLabel: "Il Problema",
             problemBody: "L'IA Cloud-first crea costi crescenti, vendor lock-in ed esposizione dei dati. Molti piccoli modelli faticano ancora con la coerenza, bloccando il deployment serio.",
+            solutionLabel: "La Nostra Soluzione",
             approachLabel: "Il Nostro Approccio",
             approachTagline: "Costruiamo per spedire, non per demo.",
             grid: [

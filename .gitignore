@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code / AI Assistant files
+.claude/
+.mcp.json
+CLAUDE.md
+CLAUDE.txt
+*.claude.md
+CodexCLI_*.md

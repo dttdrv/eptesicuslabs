@@ -1,50 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --color-eptesicus-black: #000000;
-  --color-eptesicus-white: #F7F7F7;
-  --color-eptesicus-gray: #4B5563;
-  /* Darkened from #B8B8B8 to gray-600 equivalent for readability */
-  --color-eptesicus-blue: #2D6CDF;
-  --color-eptesicus-border: #E5E5E5;
-  --primary: oklch(0.85 0.15 55);
-  /* Requested by user for TextScramble */
+  /* ═══════════════════════════════════════════════════════════════════════════
+     EPTESICUS DESIGN SYSTEM — Light Mode
+     Clean, professional, minimal
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Backgrounds - Light shades */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-card: #FFFFFF;
+  --bg-terminal: #F3F4F6;
+
+  /* Text - Dark shades */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+
+  /* Accent - Single blue */
+  --accent-blue: #3B82F6;
+
+  /* Semantic */
+  --color-success: #22C55E;
+  --color-warning: #EAB308;
+  --color-error: #EF4444;
+
+  /* Borders */
+  --border-default: #E5E7EB;
+  --border-terminal: #D1D5DB;
+
+  /* Structure */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 0 1px var(--accent-blue);
+
+  /* Legacy aliases */
+  --color-eptesicus-black: var(--text-primary);
+  --color-eptesicus-white: var(--bg-primary);
+  --color-eptesicus-gray: var(--text-secondary);
+  --color-eptesicus-blue: var(--accent-blue);
+  --color-eptesicus-border: var(--border-default);
+  --accent-teal: var(--accent-blue);
+
+  --primary: oklch(0.65 0.2 250);
 }
 
 @layer base {
-
   html,
   body {
-    -ms-overflow-style: none;
-    /* IE and Edge */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    /* Hide scrollbar completely */
     scrollbar-width: none;
-    /* Firefox */
+    -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar {
+  /* Hide Webkit scrollbar (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
     display: none;
   }
 }
 
 @theme inline {
-  --color-background: var(--color-eptesicus-white);
-  --color-foreground: var(--color-eptesicus-black);
-  --font-sans: var(--font-dm-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 
-  --color-eptesicus-black: var(--color-eptesicus-black);
-  --color-eptesicus-white: var(--color-eptesicus-white);
-  --color-eptesicus-gray: var(--color-eptesicus-gray);
-  --color-eptesicus-blue: var(--color-eptesicus-blue);
-  --color-eptesicus-border: var(--color-eptesicus-border);
+  /* Surface colors */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-terminal: var(--bg-terminal);
 
-  --color-primary: 0.2 0.05 264;
-  /* oklch approximation for #2D6CDF */
-  --color-border: var(--color-eptesicus-border);
+  /* Text colors */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  /* Accent colors */
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-teal: var(--accent-teal);
+
+  /* Semantic colors */
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+
+  /* Border colors */
+  --color-border: var(--border-default);
+  --color-border-terminal: var(--border-terminal);
+
+  /* Legacy compatibility */
+  --color-eptesicus-black: var(--text-primary);
+  --color-eptesicus-white: var(--bg-primary);
+  --color-eptesicus-gray: var(--text-secondary);
+  --color-eptesicus-blue: var(--accent-blue);
+  --color-eptesicus-border: var(--border-default);
+
+  --color-primary: 0.6 0.2 250;
 }
-
-/* Dark Mode Removed */
 
 /* Custom Fluidity Utils */
 @utility fluid-container {
@@ -55,31 +116,155 @@
   text-wrap: balance;
 }
 
+/* Grid Pattern — Light mode architectural grid */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
+/* Glass Card — Light mode variant */
 .glass-card {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  /* ~5% visual pop */
-  box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.85);
-  border-color: black;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: var(--accent-blue);
   cursor: pointer;
+}
+
+/* Terminal Card — Code editor aesthetic */
+.terminal-card {
+  background-color: var(--bg-terminal);
+  border: 1px solid var(--border-terminal);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.terminal-card-header {
+  background-color: #E5E7EB;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-terminal);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-dots span:nth-child(1) { background-color: var(--color-error); }
+.terminal-dots span:nth-child(2) { background-color: var(--color-warning); }
+.terminal-dots span:nth-child(3) { background-color: var(--color-success); }
+
+.terminal-card-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Section Label — Monospace uppercase */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-blue);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ENHANCED UI COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Gradient Text — For premium headlines */
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effects — Subtle accent glows */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 40px rgba(59, 130, 246, 0.05);
+}
+
+/* Step Indicator — For process flows */
+.step-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Icon Container — Consistent icon styling */
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid var(--border-default);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-container:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--accent-blue);
+  transform: scale(1.05);
+}
+
+/* Focus states for accessibility */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent-blue);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hide Next.js Dev Indicator */

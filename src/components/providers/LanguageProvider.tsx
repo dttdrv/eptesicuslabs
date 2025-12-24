@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { translations } from '@/lib/translations';
 
-type Language = 'en' | 'de' | 'bg' | 'fr' | 'it';
+type Language = 'en' | 'de' | 'bg' | 'el' | 'it';
 
 const LanguageContext = createContext<{
     language: Language;
@@ -19,7 +19,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         // Basic detection
         const browserLang = navigator.language.split('-')[0];
-        if (['de', 'bg', 'fr', 'it'].includes(browserLang)) {
+        if (['de', 'bg', 'el', 'it'].includes(browserLang)) {
             setLanguage(browserLang as Language);
         }
     }, []);

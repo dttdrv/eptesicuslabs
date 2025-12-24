@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { DM_Sans, Geist_Mono } from "next/font/google"; // Using Geist Mono as requested plan
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
 export default function RootLayout({
   children,
@@ -26,10 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <SmoothScrollProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

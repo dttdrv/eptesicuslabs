@@ -1,50 +1,76 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function Hero() {
     const { t } = useLanguage();
 
-    return (
-        <section className="relative min-h-[90vh] flex flex-col justify-center px-6 pt-24 pb-12 overflow-hidden text-center border-b border-[var(--color-eptesicus-border)] transition-colors">
-            <div className="absolute inset-0 bg-grid-pattern z-0 pointer-events-none" />
-            <div className="fluid-container relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: 'circOut' }}
-                    className="flex flex-col items-center"
-                >
-                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter text-balance mb-6 text-black transition-colors">
-                        {t.hero.title}
-                    </h1>
-                    <h2 className="text-2xl md:text-3xl font-light text-[var(--color-eptesicus-gray)] tracking-wide mb-8 max-w-4xl mx-auto transition-colors">
-                        {t.hero.subtitle}
-                    </h2>
-                </motion.div>
+    const handleScrollDown = () => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-                <motion.div
+    return (
+        <section className="relative min-h-screen flex flex-col justify-center items-center px-6">
+            <div className="relative z-10 flex flex-col items-center text-center mt-16">
+                {/* Main Title */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-gray-900 mb-4 md:mb-6 px-2"
+                >
+                    {t.hero.title}
+                </motion.h1>
+
+                {/* Subtitle */}
+                <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="max-w-3xl mx-auto flex flex-col items-center space-y-8"
+                    transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-500 font-normal tracking-wide mb-8 md:mb-12 px-4 max-w-3xl"
                 >
-                    <div className="p-6 md:p-8 border border-[var(--color-eptesicus-border)] bg-white/50 backdrop-blur-sm rounded-sm max-w-2xl transition-colors">
-                        <p className="text-balance font-mono text-sm md:text-base leading-relaxed text-[var(--color-eptesicus-black)] transition-colors">
-                            {t.hero.body}
-                        </p>
-                    </div>
+                    {t.hero.subtitle}
+                </motion.p>
 
-                    <div className="flex flex-wrap justify-center gap-3 pt-4 font-mono text-xs">
-                        {t.hero.pills.map((pill, i) => (
-                            <div key={i} className="px-4 py-2 border border-[var(--color-eptesicus-border)] bg-white text-[var(--color-eptesicus-black)] uppercase tracking-wider rounded-sm transition-colors">
-                                {pill}
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
+                {/* CTA Button */}
+                <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    href="/documents/Lumis-1_Pitch_Pack.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all duration-200 hover:scale-105"
+                >
+                    View Pitch Deck
+                </motion.a>
             </div>
+
+            {/* Scroll Indicator - Professional, fluid animation */}
+            <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1 }}
+                onClick={handleScrollDown}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-300 hover:text-gray-500 transition-colors duration-500 cursor-pointer"
+                aria-label="Scroll down"
+            >
+                <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: [0.45, 0, 0.55, 1]
+                    }}
+                >
+                    <ChevronDown size={28} strokeWidth={1} />
+                </motion.div>
+            </motion.button>
         </section>
     );
 }

@@ -19,9 +19,9 @@ export const TEAM_MEMBERS: Record<string, TeamMember> = {
         slug: "deyan-todorov",
         name: "Deyan Todorov",
         role: "Founder & Operator",
-        bio: "Founding Eptesicus Labs to solve the reliability crisis in local AI.",
+        bio: "Building towards a future where capable AI runs on customer hardware. Focused on small language models and the architectural innovations that make them practical for real deployment.",
         stack: ["Systems Architecture", "Rust", "LLM Eval", "Governance Structures"],
-        narrative: "I built Eptesicus because I stopped trusting the black boxes. Reliability isn't a feature; it's the baseline requirement for intelligence that matters.",
+        narrative: "The path forward isn't bigger models—it's smarter architectures. Small language models, paired with the right reliability infrastructure, can deliver enterprise-grade intelligence without the cloud dependency.",
         socials: {
             twitter: "https://x.com/dttdrv",
             github: "https://github.com/dttdrv",
