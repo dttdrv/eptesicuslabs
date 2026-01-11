@@ -119,6 +119,12 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 - Glassmorphism content cards
 - Social icons with glass effect
 
+### Phase 8: Contact Modal & CTA Behavior
+- Replaced Gmail pitch deck links with an in-site contact modal
+- Added prefilled subject for "Request Pitch Deck" CTAs
+- Wired navbar Contact button to open the same modal
+- Ensured founder cards link reliably in static export
+
 ---
 
 ## Components Created
@@ -140,10 +146,12 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 ### UI Components
 - `GradientBackground.tsx` — Flower blossom gradient with scroll reactivity
 - `AnimatedText.tsx` — Per-character scroll animation (CREATED, NOT CURRENTLY USED)
+- `ContactModal.tsx` — Glassmorphism contact form modal for pitch deck/contact
 
 ### Providers
 - `LanguageProvider.tsx` — i18n context for EN/BG
 - `SmoothScrollProvider.tsx` — Lenis smooth scroll wrapper
+- `ContactModalProvider.tsx` — Contact modal state + open helpers
 
 ### Team
 - `TeamMemberContent.tsx` — Founder detail page layout
@@ -159,6 +167,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 - [x] Floating glassmorphism navbar
 - [x] Tabbed products section with smooth transitions
 - [x] Founder detail pages with matching design
+- [x] Contact modal with prefilled pitch deck subject
 - [x] Language toggle (EN/BG)
 - [x] PDF pitch deck link
 - [x] Social media links

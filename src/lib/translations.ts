@@ -114,6 +114,26 @@ export const translations = {
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
             contact: "Contact"
+        },
+        publications: {
+            label: "PUBLICATIONS",
+            headline: "Latest Insights",
+            pageTitle: "Publications",
+            pageDescription: "Research, case studies, and insights on on-device AI and reliability engineering.",
+            viewAll: "View all publications",
+            readMore: "Read more",
+            backToList: "Back to Publications",
+            backToHome: "Back to Home",
+            minRead: "min read",
+            share: "Share",
+            noResults: "No publications found in this category.",
+            categories: {
+                all: "All",
+                research: "Research",
+                caseStudy: "Case Study",
+                news: "News",
+                announcement: "Announcement"
+            }
         }
     },
     de: {
@@ -199,6 +219,26 @@ export const translations = {
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
             contact: "Kontakt"
+        },
+        publications: {
+            label: "PUBLIKATIONEN",
+            headline: "Neueste Einblicke",
+            pageTitle: "Publikationen",
+            pageDescription: "Forschung, Fallstudien und Einblicke zu On-Device-KI und Zuverlässigkeits-Engineering.",
+            viewAll: "Alle Publikationen",
+            readMore: "Weiterlesen",
+            backToList: "Zurück zu Publikationen",
+            backToHome: "Zur Startseite",
+            minRead: "Min. Lesezeit",
+            share: "Teilen",
+            noResults: "Keine Publikationen in dieser Kategorie gefunden.",
+            categories: {
+                all: "Alle",
+                research: "Forschung",
+                caseStudy: "Fallstudie",
+                news: "Nachrichten",
+                announcement: "Ankündigung"
+            }
         }
     },
     bg: {
@@ -284,6 +324,26 @@ export const translations = {
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
             contact: "Контакт"
+        },
+        publications: {
+            label: "ПУБЛИКАЦИИ",
+            headline: "Последни Статии",
+            pageTitle: "Публикации",
+            pageDescription: "Изследвания, казуси и прозрения за on-device AI и инженеринг на надеждност.",
+            viewAll: "Всички публикации",
+            readMore: "Прочети повече",
+            backToList: "Назад към публикации",
+            backToHome: "Към началото",
+            minRead: "мин. четене",
+            share: "Сподели",
+            noResults: "Няма намерени публикации в тази категория.",
+            categories: {
+                all: "Всички",
+                research: "Изследване",
+                caseStudy: "Казус",
+                news: "Новини",
+                announcement: "Съобщение"
+            }
         }
     },
     el: {
@@ -369,6 +429,26 @@ export const translations = {
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
             contact: "Επικοινωνία"
+        },
+        publications: {
+            label: "ΔΗΜΟΣΙΕΥΣΕΙΣ",
+            headline: "Τελευταίες Πληροφορίες",
+            pageTitle: "Δημοσιεύσεις",
+            pageDescription: "Έρευνα, μελέτες περιπτώσεων και πληροφορίες για on-device AI και μηχανική αξιοπιστίας.",
+            viewAll: "Όλες οι δημοσιεύσεις",
+            readMore: "Διαβάστε περισσότερα",
+            backToList: "Πίσω στις Δημοσιεύσεις",
+            backToHome: "Επιστροφή στην Αρχική",
+            minRead: "λεπτά ανάγνωσης",
+            share: "Κοινοποίηση",
+            noResults: "Δεν βρέθηκαν δημοσιεύσεις σε αυτήν την κατηγορία.",
+            categories: {
+                all: "Όλα",
+                research: "Έρευνα",
+                caseStudy: "Μελέτη Περίπτωσης",
+                news: "Νέα",
+                announcement: "Ανακοίνωση"
+            }
         }
     },
     it: {
@@ -454,6 +534,26 @@ export const translations = {
             x_twitter: "X (Twitter)",
             instagram: "Instagram",
             contact: "Contatti"
+        },
+        publications: {
+            label: "PUBBLICAZIONI",
+            headline: "Ultimi Approfondimenti",
+            pageTitle: "Pubblicazioni",
+            pageDescription: "Ricerca, casi studio e approfondimenti su IA on-device e ingegneria dell'affidabilità.",
+            viewAll: "Tutte le pubblicazioni",
+            readMore: "Leggi di più",
+            backToList: "Torna alle Pubblicazioni",
+            backToHome: "Torna alla Home",
+            minRead: "min di lettura",
+            share: "Condividi",
+            noResults: "Nessuna pubblicazione trovata in questa categoria.",
+            categories: {
+                all: "Tutti",
+                research: "Ricerca",
+                caseStudy: "Caso Studio",
+                news: "Notizie",
+                announcement: "Annuncio"
+            }
         }
     }
 };

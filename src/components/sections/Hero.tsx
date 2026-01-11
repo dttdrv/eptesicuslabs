@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useContactModal } from '@/components/providers/ContactModalProvider';
 
 export default function Hero() {
     const { t } = useLanguage();
+    const { open } = useContactModal();
 
     const handleScrollDown = () => {
         const aboutSection = document.getElementById('about');
@@ -15,14 +17,14 @@ export default function Hero() {
     };
 
     return (
-        <section className="relative min-h-screen flex flex-col justify-center items-center px-6">
-            <div className="relative z-10 flex flex-col items-center text-center mt-16">
+        <section className="relative min-h-screen flex flex-col justify-center items-center px-[var(--space-5)]">
+            <div className="relative z-10 flex flex-col items-center text-center mt-[var(--space-8)]">
                 {/* Main Title */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-gray-900 mb-4 md:mb-6 px-2"
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                    className="text-display mb-[var(--space-4)] md:mb-[var(--space-5)] px-[var(--space-2)]"
                 >
                     {t.hero.title}
                 </motion.h1>
@@ -31,33 +33,32 @@ export default function Hero() {
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-500 font-normal tracking-wide mb-8 md:mb-12 px-4 max-w-3xl"
+                    transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+                    className="text-body max-w-[var(--container-content)] mb-[var(--space-7)] md:mb-[var(--space-9)] px-[var(--space-4)]"
                 >
                     {t.hero.subtitle}
                 </motion.p>
 
                 {/* CTA Button */}
-                <motion.a
+                <motion.button
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                    href="/documents/Lumis-1_Pitch_Pack.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all duration-200 hover:scale-105"
+                    transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+                    type="button"
+                    onClick={() => open('Request Pitch Deck')}
+                    className="btn btn-primary btn-lg"
                 >
-                    View Pitch Deck
-                </motion.a>
+                    {t.hero?.cta?.primary || 'Request Pitch Deck'}
+                </motion.button>
             </div>
 
-            {/* Scroll Indicator - Professional, fluid animation */}
+            {/* Scroll Indicator */}
             <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 onClick={handleScrollDown}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-300 hover:text-gray-500 transition-colors duration-500 cursor-pointer"
+                className="absolute bottom-[var(--space-8)] left-1/2 -translate-x-1/2 text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors cursor-pointer"
                 aria-label="Scroll down"
             >
                 <motion.div

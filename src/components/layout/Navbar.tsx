@@ -2,63 +2,65 @@
 
 import { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useContactModal } from '@/components/providers/ContactModalProvider';
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
-
+    const { open } = useContactModal();
+    const pathname = usePathname();
+    const router = useRouter();
+    const isHomePage = pathname === '/';
     useIsomorphicLayoutEffect(() => {
         setIsScrolled(window.scrollY > 50);
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                setMounted(true);
-            });
-        });
     }, []);
 
+    // Unified scroll detection (works for wheel, touch, and keyboard)
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
 
+        // Keyboard navigation support
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const scrollKeys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '];
+            if (scrollKeys.includes(e.key)) {
+                // Defer check to after the scroll happens
+                requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 50);
+                });
+            }
+        };
+
         window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('keydown', handleKeyDown, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('keydown', handleKeyDown);
+        };
     }, []);
 
-    // Scroll lock when mobile menu is open
+    // Scroll lock without position jump
     useEffect(() => {
         if (isMobileMenuOpen) {
-            // Store current scroll position
-            const scrollY = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
+            // Prevent scrolling without changing position
             document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none';
         } else {
-            // Restore scroll position
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
+            // Restore scrolling
             document.body.style.overflow = '';
-            if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            }
+            document.body.style.touchAction = '';
         }
 
         return () => {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
             document.body.style.overflow = '';
+            document.body.style.touchAction = '';
         };
     }, [isMobileMenuOpen]);
 
@@ -66,74 +68,58 @@ export default function Navbar() {
         e.preventDefault();
         setIsMobileMenuOpen(false);
 
-        // Small delay to allow scroll unlock to process
+        // If not on home page, navigate to home with hash
+        if (!isHomePage) {
+            router.push(`/#${targetId}`);
+            return;
+        }
+
+        // Small delay to allow menu close
         setTimeout(() => {
             const element = document.getElementById(targetId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        }, 10);
-    }, []);
+        }, 50);
+    }, [isHomePage, router]);
 
     const navLinks = [
         { href: '#about', label: 'About' },
         { href: '#products', label: 'Products' },
+        { href: '#publications', label: 'Publications' },
         { href: '#team', label: 'Team' },
     ];
+
+    // Consistent easing curve site-wide
+    const easeOut = [0.25, 0.1, 0.25, 1] as const;
 
     // Animation variants for mobile menu
     const menuBackdropVariants = {
         hidden: {
             opacity: 0,
-            transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
+            transition: { duration: 0.25, ease: easeOut }
         },
         visible: {
             opacity: 1,
-            transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
+            transition: { duration: 0.35, ease: easeOut }
         }
     };
 
     const menuItemVariants = {
-        hidden: { opacity: 0, y: 24, scale: 0.96 },
+        hidden: { opacity: 0, y: 20 },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
-            scale: 1,
             transition: {
-                delay: 0.1 + i * 0.08,
-                duration: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94] as const
+                delay: 0.08 + i * 0.06,
+                duration: 0.4,
+                ease: easeOut
             }
         }),
-        exit: (i: number) => ({
-            opacity: 0,
-            y: -12,
-            scale: 0.98,
-            transition: {
-                delay: (navLinks.length - i) * 0.04,
-                duration: 0.25,
-                ease: [0.4, 0, 1, 1] as const
-            }
-        })
-    };
-
-    const contactButtonVariants = {
-        hidden: { opacity: 0, y: 24, scale: 0.9 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                delay: 0.35,
-                duration: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94] as const
-            }
-        },
         exit: {
             opacity: 0,
-            y: -12,
-            scale: 0.95,
-            transition: { duration: 0.2, ease: [0.4, 0, 1, 1] as const }
+            y: -10,
+            transition: { duration: 0.2, ease: easeOut }
         }
     };
 
@@ -141,52 +127,25 @@ export default function Navbar() {
         <>
             <motion.header
                 className="fixed top-0 left-0 right-0 z-50"
-                style={{
-                    paddingTop: 'env(safe-area-inset-top)',
-                }}
                 initial={false}
                 animate={{
                     paddingTop: isScrolled ? 12 : 0,
                     paddingLeft: isScrolled ? 16 : 0,
                     paddingRight: isScrolled ? 16 : 0,
                 }}
-                transition={{
-                    duration: 0.7,
-                    ease: [0.25, 0.1, 0.25, 1],
-                }}
+                transition={{ duration: 0.5, ease: easeOut }}
             >
                 <motion.nav
-                    className="mx-auto"
+                    className={`mx-auto ${isScrolled ? 'nav-scrolled nav-scrolled-shape' : 'nav-default-shape'}`}
                     initial={false}
-                    animate={{
-                        maxWidth: isScrolled ? 900 : 1400,
-                        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.85)' : 'rgba(255, 255, 255, 0)',
-                        backdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(0px)',
-                        borderRadius: isScrolled ? 9999 : 0,
-                        boxShadow: isScrolled
-                            ? '0 4px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset'
-                            : '0 0px 0px rgba(0, 0, 0, 0)',
-                        borderWidth: isScrolled ? 1 : 0,
-                        borderColor: isScrolled ? 'rgba(0, 0, 0, 0.04)' : 'rgba(0, 0, 0, 0)',
-                    }}
-                    transition={{
-                        duration: 0.7,
-                        ease: [0.25, 0.1, 0.25, 1],
-                    }}
-                    style={{
-                        borderStyle: 'solid',
-                    }}
+                    animate={{ maxWidth: isScrolled ? 900 : 1400 }}
+                    transition={{ duration: 0.4, ease: easeOut }}
                 >
                     <motion.div
-                        className="flex items-center justify-between px-4 sm:px-6"
+                        className="flex items-center justify-between px-5 sm:px-6"
                         initial={false}
-                        animate={{
-                            height: isScrolled ? 52 : 64,
-                        }}
-                        transition={{
-                            duration: 0.7,
-                            ease: [0.25, 0.1, 0.25, 1],
-                        }}
+                        animate={{ height: isScrolled ? 52 : 64 }}
+                        transition={{ duration: 0.5, ease: easeOut }}
                     >
                         {/* Brand */}
                         <Link href="/" className="flex items-center gap-3 group">
@@ -197,66 +156,59 @@ export default function Navbar() {
                                     width: isScrolled ? 22 : 26,
                                     height: isScrolled ? 22 : 26,
                                 }}
-                                transition={{
-                                    duration: 0.7,
-                                    ease: [0.25, 0.1, 0.25, 1],
-                                }}
+                                transition={{ duration: 0.5, ease: easeOut }}
                             >
                                 <Image
                                     src="/images/logo.png"
                                     alt="Eptesicus Labs"
                                     fill
-                                    className="object-contain group-hover:opacity-70 transition-opacity duration-300"
+                                    className="object-contain group-hover:opacity-70 transition-opacity duration-200"
                                 />
                             </motion.div>
                             <motion.span
-                                className="font-medium text-gray-900 whitespace-nowrap overflow-hidden hidden sm:block"
+                                className="font-medium text-[var(--text-primary)] whitespace-nowrap overflow-hidden"
                                 initial={false}
                                 animate={{
                                     opacity: isScrolled ? 1 : 0,
                                     width: isScrolled ? 'auto' : 0,
                                     marginLeft: isScrolled ? 0 : -8,
                                 }}
-                                transition={{
-                                    duration: 0.5,
-                                    ease: [0.25, 0.1, 0.25, 1],
-                                    delay: isScrolled ? 0.1 : 0,
-                                }}
+                                transition={{ duration: 0.4, ease: easeOut, delay: isScrolled ? 0.1 : 0 }}
                             >
                                 Eptesicus Laboratories
                             </motion.span>
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className="hidden md:flex items-center gap-[var(--space-7)]">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
                                     href={link.href}
                                     onClick={(e) => handleSmoothScroll(e, link.href.slice(1))}
-                                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-300"
+                                    className="link text-sm"
                                 >
                                     {link.label}
                                 </a>
                             ))}
-                            <a
-                                href="#contact"
-                                onClick={(e) => handleSmoothScroll(e, 'contact')}
-                                className="px-5 py-2 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 rounded-full text-sm font-medium"
+                            <button
+                                type="button"
+                                onClick={() => open()}
+                                className="btn btn-primary btn-sm"
                             >
                                 Contact
-                            </a>
+                            </button>
                         </div>
 
-                        {/* Mobile Menu Button - Animated hamburger */}
+                        {/* Mobile Menu Button */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors duration-300 relative w-10 h-10 flex items-center justify-center"
+                            className="md:hidden p-2 transition-colors duration-200 relative w-10 h-10 flex items-center justify-center"
+                            style={{ color: 'var(--mobile-menu-btn)' }}
                             aria-label="Toggle menu"
                             aria-expanded={isMobileMenuOpen}
                         >
                             <div className="relative w-5 h-4">
-                                {/* Top line */}
                                 <motion.span
                                     className="absolute left-0 w-5 h-0.5 bg-current rounded-full"
                                     animate={{
@@ -264,18 +216,16 @@ export default function Navbar() {
                                         rotate: isMobileMenuOpen ? 45 : 0,
                                         translateY: isMobileMenuOpen ? '-50%' : 0,
                                     }}
-                                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                    transition={{ duration: 0.25, ease: easeOut }}
                                 />
-                                {/* Middle line */}
                                 <motion.span
                                     className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-0.5 bg-current rounded-full"
                                     animate={{
                                         opacity: isMobileMenuOpen ? 0 : 1,
                                         scaleX: isMobileMenuOpen ? 0 : 1,
                                     }}
-                                    transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                                    transition={{ duration: 0.2, ease: easeOut }}
                                 />
-                                {/* Bottom line */}
                                 <motion.span
                                     className="absolute left-0 w-5 h-0.5 bg-current rounded-full"
                                     animate={{
@@ -283,7 +233,7 @@ export default function Navbar() {
                                         rotate: isMobileMenuOpen ? -45 : 0,
                                         translateY: isMobileMenuOpen ? '50%' : 0,
                                     }}
-                                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                    transition={{ duration: 0.25, ease: easeOut }}
                                 />
                             </div>
                         </button>
@@ -300,22 +250,20 @@ export default function Navbar() {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="fixed inset-0 z-40 md:hidden"
+                        className="fixed inset-0 z-40 md:hidden flex flex-col items-center justify-center"
                         style={{
-                            backgroundColor: 'rgba(255, 255, 255, 0.97)',
-                            backdropFilter: 'blur(24px) saturate(180%)',
-                            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                            paddingTop: 'env(safe-area-inset-top)',
-                            paddingBottom: 'env(safe-area-inset-bottom)',
+                            backgroundColor: 'var(--mobile-menu-bg)',
+                            backdropFilter: 'blur(20px) saturate(180%)',
+                            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                         }}
                     >
-                        <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
+                        <div className="flex flex-col items-center gap-[var(--space-7)]">
                             {navLinks.map((link, i) => (
                                 <motion.a
                                     key={link.href}
                                     href={link.href}
                                     onClick={(e) => handleSmoothScroll(e, link.href.slice(1))}
-                                    className="text-3xl font-light text-gray-900 hover:text-blue-600 transition-colors duration-300 mobile-tap-target flex items-center justify-center"
+                                    className="text-h2 text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors"
                                     custom={i}
                                     variants={menuItemVariants}
                                     initial="hidden"
@@ -326,33 +274,26 @@ export default function Navbar() {
                                 </motion.a>
                             ))}
 
-                            {/* Divider */}
                             <motion.div
-                                className="w-16 h-px bg-gray-200"
+                                className="divider w-12 my-[var(--space-2)]"
                                 initial={{ opacity: 0, scaleX: 0 }}
-                                animate={{
-                                    opacity: 1,
-                                    scaleX: 1,
-                                    transition: { delay: 0.3, duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    scaleX: 0,
-                                    transition: { duration: 0.2 }
-                                }}
+                                animate={{ opacity: 1, scaleX: 1, transition: { delay: 0.25, duration: 0.3 } }}
+                                exit={{ opacity: 0, scaleX: 0, transition: { duration: 0.15 } }}
                             />
 
-                            <motion.a
-                                href="#contact"
-                                onClick={(e) => handleSmoothScroll(e, 'contact')}
-                                className="px-10 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 rounded-full text-lg font-medium mobile-tap-target"
-                                variants={contactButtonVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
+                            <motion.button
+                                type="button"
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    open();
+                                }}
+                                className="btn btn-primary"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.4, ease: easeOut } }}
+                                exit={{ opacity: 0, y: -10, transition: { duration: 0.15 } }}
                             >
                                 Contact
-                            </motion.a>
+                            </motion.button>
                         </div>
                     </motion.div>
                 )}

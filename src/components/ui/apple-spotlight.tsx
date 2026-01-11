@@ -63,7 +63,7 @@ interface ShortcutButtonProps {
 
 const ShortcutButton = ({ icon, link }: ShortcutButtonProps) => {
     return (
-        <a href={link} target="_blank">
+        <a href={link} target="_blank" rel="noopener noreferrer">
             <div className="rounded-full cursor-pointer hover:shadow-lg opacity-30 hover:opacity-100 transition-[opacity,shadow] duration-200">
                 <div className="size-16 aspect-square flex items-center justify-center">{icon}</div>
             </div>
@@ -149,7 +149,7 @@ interface SearchResultCardProps extends SearchResult {
 
 const SearchResultCard = ({ icon, label, description, link, isLast }: SearchResultCardProps) => {
     return (
-        <a href={link} target="_blank" className="overflow-hidden w-full group/card">
+        <a href={link} target="_blank" rel="noopener noreferrer" className="overflow-hidden w-full group/card">
             <div
                 className={cn(
                     'flex items-center text-black justify-start hover:bg-white gap-3 py-2 px-2 rounded-xl hover:shadow-md w-full',

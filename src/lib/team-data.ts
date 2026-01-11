@@ -5,12 +5,14 @@ export interface TeamMember {
     bio: string;
     stack: string[];
     narrative: string;
+    image?: string;
     socials: {
         github?: string;
         twitter?: string;
         linkedin?: string;
         instagram?: string;
         email?: string;
+        website?: string;
     };
 }
 
@@ -22,11 +24,11 @@ export const TEAM_MEMBERS: Record<string, TeamMember> = {
         bio: "Building towards a future where capable AI runs on customer hardware. Focused on small language models and the architectural innovations that make them practical for real deployment.",
         stack: ["Systems Architecture", "Rust", "LLM Eval", "Governance Structures"],
         narrative: "The path forward isn't bigger models—it's smarter architectures. Small language models, paired with the right reliability infrastructure, can deliver enterprise-grade intelligence without the cloud dependency.",
+        image: "/images/team/deyan-todorov.jpg",
         socials: {
-            twitter: "https://x.com/dttdrv",
             github: "https://github.com/dttdrv",
-            instagram: "https://www.instagram.com/dttdrv",
-            email: "mailto:deyan.todorov21@gmail.com"
+            email: "mailto:deyan.todorov21@gmail.com",
+            website: "https://dttdrv.xyz"
         }
     },
     "iliyan-bozhanov": {

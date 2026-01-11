@@ -45,228 +45,218 @@ export default function ProductsSection() {
         industrial: Wrench
     };
 
-    return (
-        <section id="products" className="py-24 px-6 relative">
-            <div className="max-w-5xl mx-auto">
+    const easeOut = [0.25, 0.1, 0.25, 1] as const;
 
-                {/* Big Card Container - Glassmorphism */}
+    return (
+        <section id="products" className="section px-[var(--space-5)] relative">
+            <div className="container-wide">
+
+                {/* Glassmorphism Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="rounded-2xl p-8 md:p-12"
-                    style={{
-                        background: 'rgba(255, 255, 255, 0.7)',
-                        backdropFilter: 'blur(20px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
-                        border: '1px solid rgba(255, 255, 255, 0.3)',
-                    }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    className="card-glass"
                 >
                     {/* Section Header */}
-                    <div className="text-center mb-12">
-                        <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-gray-400 mb-4">
+                    <div className="text-center mb-[var(--space-9)]">
+                        <h2 className="text-label mb-[var(--space-4)]">
                             {t.products?.label || 'Products'}
                         </h2>
-                        <h3 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4">
+                        <h3 className="text-display mb-[var(--space-4)]">
                             Lumis-1
                         </h3>
-                        <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
+                        <p className="text-body max-w-[var(--container-content)] mx-auto">
                             {t.products?.description || 'An on-device AI assistant with a lightweight Validator Council and bounded steering loop.'}
                         </p>
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-12">
+                    <div className="tabs mb-[var(--space-9)]">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                                    activeTab === tab.id
-                                        ? 'bg-gray-900 text-white'
-                                        : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                                }`}
+                                className={`tab ${activeTab === tab.id ? 'tab-active' : ''}`}
                             >
                                 {tab.label}
                             </button>
                         ))}
                     </div>
 
-                    {/* Tab Content - Smooth height transitions */}
-                    <motion.div
-                        layout
-                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                    <AnimatePresence mode="wait">
-                        {/* Overview Tab */}
-                        {activeTab === 'overview' && (
-                            <motion.div
-                                key="overview"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="space-y-8"
-                            >
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    {/* Product Description */}
-                                    <div className="space-y-6">
-                                        <div className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm">
-                                            {t.products?.status || 'In Development'}
+                    {/* Tab Content */}
+                    <motion.div layout transition={{ duration: 0.3, ease: easeOut }}>
+                        <AnimatePresence mode="wait">
+                            {/* Overview Tab */}
+                            {activeTab === 'overview' && (
+                                <motion.div
+                                    key="overview"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="stack-lg"
+                                >
+                                    <div className="grid md:grid-cols-2 gap-[var(--space-7)]">
+                                        <div className="stack-md text-center md:text-left">
+                                            <div className="inline-block px-[var(--space-3)] py-[var(--space-1)] rounded-full bg-[var(--accent-light)] text-[var(--accent)] text-sm font-medium">
+                                                {t.products?.status || 'In Development'}
+                                            </div>
+                                            <p className="text-body">
+                                                {t.products?.overviewText || 'Our first packaged product: an on-device assistant with a lightweight Validator Council (Safety, Consistency, Accuracy/Support) and a bounded steering loop.'}
+                                            </p>
                                         </div>
-                                        <p className="text-lg text-gray-600 leading-relaxed">
-                                            {t.products?.overviewText || 'Our first packaged product: an on-device assistant with a lightweight Validator Council (Safety, Consistency, Accuracy/Support) and a bounded steering loop. Proves the platform thesis and provides a concrete product for early enterprise pilots.'}
-                                        </p>
-                                    </div>
 
-                                    {/* Specs Card */}
-                                    <div className="bg-gray-50 rounded-xl border border-gray-200 p-6">
-                                        <h4 className="text-xs font-mono uppercase tracking-[0.15em] text-gray-400 mb-6">
-                                            {t.products?.specsTitle || 'Technical Specifications'}
+                                        <div className="card-terminal">
+                                            <div className="card-terminal-header">
+                                                <div className="card-terminal-dots">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                                <span className="text-label ml-[var(--space-2)]">
+                                                    {t.products?.specsTitle || 'Technical Specifications'}
+                                                </span>
+                                            </div>
+                                            <div className="card-terminal-body stack-sm">
+                                                {(t.products?.specs || ['On-device processing', 'Offline-capable', 'Reliability layer built-in', 'Enterprise-ready']).map((spec: string, i: number) => (
+                                                    <div key={i} className="flex items-center gap-[var(--space-3)] text-[var(--text-primary)]">
+                                                        <div className="w-2 h-2 rounded-full bg-[var(--accent)]" />
+                                                        {spec}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Reliability Tab */}
+                            {activeTab === 'reliability' && (
+                                <motion.div
+                                    key="reliability"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="stack-xl"
+                                >
+                                    <div className="text-center max-w-[var(--container-content)] mx-auto stack-sm">
+                                        <h4 className="text-h2">
+                                            {t.validator?.headline}
                                         </h4>
-                                        <ul className="space-y-4">
-                                            {(t.products?.specs || ['On-device processing', 'Offline-capable', 'Reliability layer built-in', 'Enterprise-ready']).map((spec: string, i: number) => (
-                                                <li key={i} className="flex items-center gap-3 text-gray-900">
-                                                    <div className="w-2 h-2 rounded-full bg-blue-500" />
-                                                    {spec}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* Reliability Tab */}
-                        {activeTab === 'reliability' && (
-                            <motion.div
-                                key="reliability"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="space-y-12"
-                            >
-                                <div className="text-center max-w-2xl mx-auto">
-                                    <h4 className="text-2xl font-semibold text-gray-900 mb-4">
-                                        {t.validator?.headline}
-                                    </h4>
-                                    <p className="text-gray-500">
-                                        {t.validator?.description}
-                                    </p>
-                                </div>
-
-                                {/* Process Flow */}
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                    {validatorSteps.map((step: { id: string; title: string; desc: string }, index: number) => {
-                                        const IconComponent = icons[step.id as keyof typeof icons] || FileText;
-                                        return (
-                                            <div key={step.id} className="relative">
-                                                {index < validatorSteps.length - 1 && (
-                                                    <div className="hidden md:block absolute top-8 left-full w-full">
-                                                        <ArrowRight size={16} className="text-gray-400 -translate-x-1/2" />
-                                                    </div>
-                                                )}
-                                                <div className="text-center space-y-4">
-                                                    <div className="w-16 h-16 mx-auto rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center">
-                                                        <IconComponent size={24} className="text-blue-500" />
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-gray-900 font-medium">{step.title}</div>
-                                                        <p className="text-sm text-gray-500 mt-1">{step.desc}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* Economics Tab */}
-                        {activeTab === 'economics' && (
-                            <motion.div
-                                key="economics"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="space-y-8"
-                            >
-                                <div className="text-center max-w-2xl mx-auto">
-                                    <h4 className="text-2xl font-semibold text-gray-900 mb-4">
-                                        {t.economics?.headline}
-                                    </h4>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    {/* Cloud AI */}
-                                    <div className="p-6 rounded-xl border border-red-200 bg-red-50">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                                                <Cloud size={20} className="text-red-500" />
-                                            </div>
-                                            <h5 className="text-gray-900 font-medium">{t.economics?.cloudTitle}</h5>
-                                        </div>
-                                        <p className="text-gray-600 text-sm">
-                                            {t.economics?.cloudDesc}
+                                        <p className="text-body">
+                                            {t.validator?.description}
                                         </p>
                                     </div>
 
-                                    {/* On-Device */}
-                                    <div className="p-6 rounded-xl border border-green-200 bg-green-50">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                                                <Cpu size={20} className="text-green-500" />
-                                            </div>
-                                            <h5 className="text-gray-900 font-medium">{t.economics?.onDeviceTitle}</h5>
-                                        </div>
-                                        <p className="text-gray-600 text-sm">
-                                            {t.economics?.onDeviceDesc}
-                                        </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* Use Cases Tab */}
-                        {activeTab === 'use-cases' && (
-                            <motion.div
-                                key="use-cases"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="space-y-8"
-                            >
-                                <div className="text-center max-w-2xl mx-auto">
-                                    <h4 className="text-2xl font-semibold text-gray-900 mb-4">
-                                        {t.useCases?.headline}
-                                    </h4>
-                                </div>
-
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    {useCases.map((useCase: { icon: string; title: string; desc: string }) => {
-                                        const IconComponent = caseIcons[useCase.icon as keyof typeof caseIcons] || Scale;
-                                        return (
-                                            <div
-                                                key={useCase.title}
-                                                className="p-6 rounded-xl border border-gray-200 bg-gray-50 transition-all duration-300 hover:shadow-md"
-                                            >
-                                                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
-                                                    <IconComponent size={24} className="text-blue-500" />
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-[var(--space-5)]">
+                                        {validatorSteps.map((step: { id: string; title: string; desc: string }, index: number) => {
+                                            const IconComponent = icons[step.id as keyof typeof icons] || FileText;
+                                            return (
+                                                <div key={step.id} className="relative">
+                                                    {index < validatorSteps.length - 1 && (
+                                                        <div className="hidden md:block absolute top-6 left-full w-full">
+                                                            <ArrowRight size={16} className="text-[var(--border-strong)] -translate-x-1/2" />
+                                                        </div>
+                                                    )}
+                                                    <div className="text-center stack-sm">
+                                                        <div className="icon-box mx-auto">
+                                                            <IconComponent size={20} />
+                                                        </div>
+                                                        <div>
+                                                            <div className="text-[var(--text-primary)] font-medium">{step.title}</div>
+                                                            <p className="text-body-sm mt-[var(--space-1)]">{step.desc}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <h5 className="text-gray-900 font-medium mb-2">{useCase.title}</h5>
-                                                <p className="text-sm text-gray-600">{useCase.desc}</p>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Economics Tab */}
+                            {activeTab === 'economics' && (
+                                <motion.div
+                                    key="economics"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="stack-lg"
+                                >
+                                    <div className="text-center max-w-[var(--container-content)] mx-auto">
+                                        <h4 className="text-h2">
+                                            {t.economics?.headline}
+                                        </h4>
+                                    </div>
+
+                                    <div className="grid md:grid-cols-2 gap-[var(--space-5)]">
+                                        <div className="card p-[var(--space-5)] border-[var(--error)] bg-red-50 text-center md:text-left">
+                                            <div className="flex flex-col md:flex-row items-center md:items-start gap-[var(--space-3)] mb-[var(--space-4)]">
+                                                <div className="icon-box icon-box-sm icon-box-error">
+                                                    <Cloud size={20} />
+                                                </div>
+                                                <h5 className="text-[var(--text-primary)] font-medium">{t.economics?.cloudTitle}</h5>
                                             </div>
-                                        );
-                                    })}
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                            <p className="text-body-sm">
+                                                {t.economics?.cloudDesc}
+                                            </p>
+                                        </div>
+
+                                        <div className="card p-[var(--space-5)] border-[var(--success)] bg-green-50 text-center md:text-left">
+                                            <div className="flex flex-col md:flex-row items-center md:items-start gap-[var(--space-3)] mb-[var(--space-4)]">
+                                                <div className="icon-box icon-box-sm icon-box-success">
+                                                    <Cpu size={20} />
+                                                </div>
+                                                <h5 className="text-[var(--text-primary)] font-medium">{t.economics?.onDeviceTitle}</h5>
+                                            </div>
+                                            <p className="text-body-sm">
+                                                {t.economics?.onDeviceDesc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Use Cases Tab */}
+                            {activeTab === 'use-cases' && (
+                                <motion.div
+                                    key="use-cases"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="stack-lg"
+                                >
+                                    <div className="text-center max-w-[var(--container-content)] mx-auto">
+                                        <h4 className="text-h2">
+                                            {t.useCases?.headline}
+                                        </h4>
+                                    </div>
+
+                                    <div className="grid md:grid-cols-3 gap-[var(--space-5)]">
+                                        {useCases.map((useCase: { icon: string; title: string; desc: string }) => {
+                                            const IconComponent = caseIcons[useCase.icon as keyof typeof caseIcons] || Scale;
+                                            return (
+                                                <div
+                                                    key={useCase.title}
+                                                    className="card card-interactive text-center"
+                                                >
+                                                    <div className="icon-box mx-auto mb-[var(--space-4)]">
+                                                        <IconComponent size={20} />
+                                                    </div>
+                                                    <h5 className="text-[var(--text-primary)] font-medium mb-[var(--space-2)]">{useCase.title}</h5>
+                                                    <p className="text-body-sm">{useCase.desc}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </motion.div>
                 </motion.div>
 
