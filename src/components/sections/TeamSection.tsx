@@ -61,8 +61,13 @@ export default function TeamSection() {
                             aria-label="View profile: Iliyan Bozhanov"
                         >
                             <div className="flex items-center gap-[var(--space-4)]">
-                                <div className="avatar">
-                                    IB
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-[var(--border-default)] flex-shrink-0">
+                                    <Image
+                                        src="/images/team/iliyan-bozhanov.jpg"
+                                        alt="Iliyan Bozhanov"
+                                        fill
+                                        className="object-cover"
+                                    />
                                 </div>
                                 <div>
                                     <h5 className="text-[var(--text-primary)] font-medium group-hover:text-[var(--accent)] transition-colors">
