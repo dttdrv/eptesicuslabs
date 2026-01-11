@@ -38,6 +38,7 @@ export const TEAM_MEMBERS: Record<string, TeamMember> = {
         bio: "Architecting the distributed validation layer for Lumis-1.",
         stack: ["Distributed Systems", "Cryptography", "Model Optimization", "Python"],
         narrative: "Building the engine that proves small models can punch above their weight class through rigorous mathematical verification.",
+        image: "/images/team/iliyan-bozhanov.jpg",
         socials: {
             instagram: "https://www.instagram.com/iliyan_bozhanov",
             email: "mailto:libojanov@gmail.com"
