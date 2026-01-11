@@ -466,12 +466,15 @@
 /* Navbar shape states - CSS transitions */
 .nav-default-shape,
 .nav-scrolled-shape {
+  position: relative;
   border-style: solid;
   transition:
     background-color 0.4s var(--ease-out),
     box-shadow 0.4s var(--ease-out),
     border-radius 0.4s var(--ease-out),
     border-color 0.4s var(--ease-out);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .nav-default-shape {
@@ -484,8 +487,8 @@
   border-radius: 9999px;
   border-width: 1px;
   border-color: var(--nav-border);
-  backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
