@@ -86,8 +86,8 @@ export default function Navbar() {
     const navLinks = [
         { href: '#about', label: 'About' },
         { href: '#products', label: 'Products' },
-        { href: '#publications', label: 'Publications' },
         { href: '#team', label: 'Team' },
+        { href: '#publications', label: 'Publications' },
     ];
 
     // Consistent easing curve site-wide

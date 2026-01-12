@@ -22,8 +22,8 @@ export default function Home() {
         <Hero />
         <About />
         <ProductsSection />
-        <PublicationsSection publications={publications} />
         <TeamSection />
+        <PublicationsSection publications={publications} />
         <div className="flex-grow" />
         <Footer />
       </div>
